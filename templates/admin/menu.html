@@ -1,0 +1,220 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Universe Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.ico' %}"/>
+	
+	<style>
+	a:link { text-decoration: none; }
+
+
+	
+	</style>
+  </head>
+  <body>
+    <div class="container-scroller">
+
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+
+          {% if request.session.admin %}
+          <a class="navbar-brand brand-logo" href=""><b>Recipe Admin</b></a>
+          <a class="navbar-brand brand-logo-mini" href=""><b>Recipe Admin</b></a>
+          {% elif request.session.coid %}
+          <a class="navbar-brand brand-logo" href=""><b>Courier Company</b></a>
+          <a class="navbar-brand brand-logo-mini" href=""><b>Courier Company</b></a>
+          {% else %}
+          <a class="navbar-brand brand-logo" href=""><b>Recipe Staff</b></a>
+          <a class="navbar-brand brand-logo-mini" href=""><b>Recipe Staff</b></a>
+          {% endif %}
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="search-field d-none d-md-block">
+            <form class="d-flex align-items-center h-100" action="#">
+              <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+              </div>
+            </form>
+          </div>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <!--<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">-->
+                <div class="nav-profile-img">
+                  {% if request.session.admin %}
+                  <h4>Welcome : Admin</h4>
+                  {% elif request.session.coid %}
+                  <h4> Welcome: {{ request.session.coname }}</h4>
+                  {% else %}
+                  <h4> Welcome : {{ request.session.sname }} </h4>
+                  {% endif %}
+                  <!--<img src="{% static 'admin/images/faces/face1.jpg' %}" alt="image">
+                  <span class="availability-status online"></span>-->
+                </div>
+                <div class="nav-profile-text">
+                  <!--<p class="mb-1 text-black">David Greymaax</p>-->
+                </div>
+              </a>
+              
+            </li>
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <!--<i class="mdi mdi-fullscreen" id="fullscreen-button"></i>-->
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <!--<i class="mdi mdi-email-outline"></i>-->
+                <!--<span class="count-symbol bg-warning"></span>-->
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+
+              </div>
+            </li>
+
+            <li class="nav-item nav-logout d-none d-lg-block">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+            <li class="nav-item nav-settings d-none d-lg-block">
+              <a class="nav-link" href="#">
+                <i class="mdi mdi-format-line-spacing"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+       <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+
+          {% if request.session.admin %}
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/dash">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Manage</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/staff_register">Add Staffs</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/view_category">View Recipie Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/add_category">Add Recipie Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/add_category_products">Add Product Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/view_product_category">View Product Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/add_items">Add Items</a></li>
+                  
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">
+                <span class="menu-title">Logout</span>
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+          
+           
+          </ul>
+          {% elif request.session.coid %}
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/dash">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">
+                <span class="menu-title">Logout</span>
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+          
+           
+          </ul>
+          {% else %}
+
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/dash">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Manage</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="http://127.0.0.1:8000/view_cus">View Customers</a></li>       
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">
+                <span class="menu-title">Logout</span>
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+          
+           
+          </ul>
+          {% endif %}
+
+
+
+
+        </nav>
+
+
+
+         {% endblock %}
+
+  </body>
+</html>

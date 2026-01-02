@@ -1,0 +1,102 @@
+{% block content %}
+{% load static %}
+
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .invoice {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .invoice h2 {
+            margin: 0;
+            padding: 0;
+        }
+        .invoice .header {
+        display: flex;
+        justify-content: center; /* Center-align the content horizontally */
+        align-items: center; /* Center-align the content vertically */
+        flex-direction: column; /* Stack the content vertically */
+        margin-bottom: 20px;
+        }
+        .invoice .left {
+            flex: 2;
+            align-items: center;
+        }
+        .invoice .right {
+            flex: 1;
+            text-align: right;
+        }
+        .invoice .details {
+            margin-bottom: 20px;
+        }
+        .invoice .details p {
+            margin: 5px 0;
+        }
+        .invoice .items {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .invoice .items th,
+        .invoice .items td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        .invoice .items th {
+            background-color: #f4f4f4;
+        }
+        .invoice .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+<div class="invoice">
+    <div class="header">
+        <div>
+           <center><h2>Recipie Management</h2></center> 
+            <h4 style="padding-left: 30px;">Palarivattom, Ernakulam, Kerala, PIN:634573</h4>
+        </div>
+        <h1>Purchase Bill</h1>
+    </div>
+    <div class="right">
+        <p>Date: <b>{{ result.date }}</b></p>
+    </div>
+    <div class="details">
+        <p>Name: {{ user.name }}</p>
+        <p>Phone: {{ user.phone }}</p>
+        <p>GSTIN: 22AAAAA0000A1Z5</p>
+        <p>Place: {{ user.place }}</p>
+    </div>
+    <table class="items">
+        <tr>
+            <th>Description</th>
+            <th>Name</th>
+        </tr>
+        {% for item_detail in result.item_details %}
+       
+        <tr>
+            <td>Product Name</td>
+            <td>{{ item_detail.p_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <p>Payment Status: Received</p>
+    </div>
+    <div class="total">
+        <p>SGST: 12%</p>
+        <p>CGST: 12%</p>
+        <p>Total Amount: ₹<b>{{ result.p_amount }}</b></p>
+    </div>
+</div>
+    <a href="http://127.0.0.1:8000/index">Back to Home</a>
+{% endblock %}

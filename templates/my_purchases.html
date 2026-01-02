@@ -1,0 +1,100 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
+<style>
+    .custom-table {
+    width: 100%; /* Set table width to 100% */
+    background-color: #f2f2f2; /* Set background color */
+}
+
+.custom-table th, .custom-table td {
+    padding: 8px; /* Add padding to table cells */
+}
+
+.custom-table th {
+    background-color: #F65005; /* Header background color */
+    color: white; /* Header text color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.custom-table tbody tr:hover {
+    background-color: #ddd; /* Hover row background color */
+}
+</style>
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">My Purchases</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Purchases</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">My Purchases</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+
+                <table class="table table-bordered custom-table">
+                    <thead>
+                        <tr>
+                            <th>Items Purchased</th>
+                            <th>Total Items</th>
+                            <th>Total Amount</th>
+                            <th>Purchase Date</th>
+                            <th>Delivery Date</th>
+                            <th>View Bill</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if purchase_details %}
+                            {% for purchase_detail in purchase_details %}
+                            <tr>
+                                <td>
+                                    {% for item_name in purchase_detail.item_names %}
+                                        {{ item_name }}<br>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ purchase_detail.total_items }}</td>
+                                <td>{{ purchase_detail.total_amount }}</td>
+                                <td>{{ purchase_detail.purchase_date }}</td>
+                                <td>{{ purchase_detail.delivery_date }}</td>
+                                <td><a class="btn btn-primary" href="view_bill/{{purchase_detail.cart_dtl}}">Bill</a></td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5"><h1 class="mb-4"> No Purchase Found</h1> <a class="btn border-secondary rounded-pill py-3 px-5" href="view_products">Go Back To Shopping</a> </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}

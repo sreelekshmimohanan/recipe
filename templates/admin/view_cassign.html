@@ -1,0 +1,74 @@
+{% load static %}
+{% block content %}
+{% include 'admin/menu.html' %}
+
+              <div class="col-lg-10 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Assign Courier Company</h4><br>
+                    <!--<p class="card-description"> Add class <code>.table-bordered</code>
+                    </p>-->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>District</th>
+                                <th>Street</th>
+                                <th>Phone</th>
+                                <th>Number of items</th>
+                                <th>Amount Paid</th>
+                                <th>Assign Courier Company</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for group in result %}
+                            {% for payment_detail in group.details %}
+                            <tr>
+                                {% if forloop.first %}
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.fname }} {{ payment_detail.user_details.lname }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.district }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.street }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.phone }}</td>
+                                {% endif %}
+                                <td>{{ payment_detail.number_of_items }}</td>
+                                <td>{{ payment_detail.amount_paid }}</td>
+                            <td><a href="assign_courier/{{group.cart_master_id}}" class="btn btn-gradient-primary me-2">Assign</a></td>
+                            </tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              </div>
+          
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+        
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'admin/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  {% endblock %}
+  </body>
+</html>

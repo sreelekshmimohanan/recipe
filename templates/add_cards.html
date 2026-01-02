@@ -1,0 +1,72 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Card Details</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Card</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Card Details</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            
+            <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <form action="add_cards" method="post" >
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="card_holder" id="name" placeholder="Card Holder Name">
+                                <label for="name">Card Holder Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" pattern="[0-9]{16}" title="Enter 16 Digits" name="card_no" id="email" placeholder="Card Number">
+                                <label for="email">Card Number</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" name="exp_date" id="subject" placeholder="Exp-Date">
+                                <label for="subject">Exp-Date</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" pattern="[0-9]{3}" title="Enter 3 Digits" name="cvv" id="subject" placeholder="CVV">
+                                <label for="subject">Cvv</label>
+                            </div>
+                        </div>
+                      
+                        
+                        <div class="col-12">
+                            <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}

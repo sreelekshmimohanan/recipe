@@ -1,0 +1,78 @@
+{% load static %}
+{% block content %}
+{% include 'admin/menu.html' %}
+
+              <div class="col-lg-10 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Courier Company List</h4><br>
+                    <!--<p class="card-description"> Add class <code>.table-bordered</code>
+                    </p>-->
+                    <a href="add_courier" class="btn btn-gradient-primary me-2">Add New</a><br>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th> Company Name </th>
+                          <th> City </th>
+                          <th> District</th>
+                          <th> Street</th>
+                          <th> PIN</th>
+                          <th> Phone</th>
+                          <th> Email</th>
+                          {% if request.session.admin %}
+                          <th> Edit</th>
+                          <th> Remove</th>
+                          {% endif %}
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in result %}
+                        <tr>
+
+                            <td>{{i.co_name}}</td>
+                            <td>{{i.co_city}}</td>
+                            <td>{{i.co_dist}}</td>
+                            <td>{{i.co_street}}</td>
+                            <td>{{i.co_pin}}</td>
+                            <td>{{i.co_phone}}</td>
+                            <td>{{i.email}}</td>
+                            {% if request.session.admin %}
+                            <td><a href="edit_courier/{{i.id}}" class="btn btn-gradient-primary me-2">Edit</a></td>
+                            <td><a href="remove_courier/{{i.id}}" class="btn btn-gradient-primary me-2">Remove</a></td>
+                            {% endif %}
+
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              </div>
+          
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+        
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'admin/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  {% endblock %}
+  </body>
+</html>

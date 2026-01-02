@@ -1,0 +1,135 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <h1 class="display-3 mb-3 animated slideInDown">Checkout</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-dark active" aria-current="page">Checkout</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+        <!-- Checkout Page Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <h1 class="mb-4">Billing details</h1>
+               
+                    <div class="row g-5">
+                        <div class="col-md-12 col-lg-6 col-xl-7">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">First Name<sup>*</sup></label>
+                                        <input type="text" readonly value="{{result1.fname}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Last Name<sup>*</sup></label>
+                                        <input type="text" readonly value="{{result1.lname}}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                          
+                           
+                            <div class="form-item">
+                                <label class="form-label my-3">Street<sup>*</sup></label>
+                                <input type="text" readonly value="{{result1.street}}" class="form-control">
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label my-3">District<sup>*</sup></label>
+                                <input type="text" readonly value="{{result1.district}}" class="form-control">
+                            </div>
+                           
+                            <div class="form-item">
+                                <label class="form-label my-3">Mobile<sup>*</sup></label>
+                                <input type="tel" readonly value="{{result1.phone}}" class="form-control">
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label my-3">Email Address<sup>*</sup></label>
+                                <input type="email" readonly value="{{result1.email}}" class="form-control">
+                            </div>
+                           
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-5">
+                            
+                            <h2 class="mb-4">Payment Details</h2>
+                            <form action="add_payment/{{result.id}}" method="post">
+                                {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Choose Your Card<sup>*</sup></label>
+                                        <select required name="card_id" class="form-control">
+                                            {% if not card_dtl %}
+                                            <option value="">Add a Card First in Your Profile</option>
+                                            {% endif %}
+                                            {% for i in card_dtl %}
+                                            <option value="{{i.id}}">{{i.card_holder}} ({{i.card_no}})</option>
+                                            {% endfor %}
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Card CVV<sup>*</sup></label>
+                                        <input name="cvv" required type="password"  class="form-control">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                       
+                            <div class="table-responsive">
+
+
+                                <table class="table">
+                                  
+                                    <tbody>
+                                       
+                                        
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td class="py-5">
+                                                <h4 class="mb-0 text-dark text-uppercase py-3">TOTAL AMOUNT :</h4>
+                                            </td>
+                                            <td class="py-5"></td>
+                                            <td class="py-5"></td>
+                                            <td class="py-5">
+                                                <div class="py-3 border-bottom border-top">
+                                                    <p class="mb-0 text-dark">₹ {{ result.cart_tot_amt }}</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="row g-4 text-center align-items-center justify-content-center pt-4">
+                                <input type="submit" class="btn btn-primary rounded-pill py-3 px-5" value="Place Order">
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        <!-- Checkout Page End -->
+
+
+      
+        {% include 'footer.html' %}
+
+        {% endblock %}

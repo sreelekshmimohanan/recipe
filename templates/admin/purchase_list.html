@@ -1,0 +1,71 @@
+{% load static %}
+{% block content %}
+{% include 'admin/menu.html' %}
+
+              <div class="col-lg-10 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Purchase  List</h4><br>
+                    <!--<p class="card-description"> Add class <code>.table-bordered</code>
+                    </p>-->
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th> Vendor </th>
+                          <th> Purchase Date</th>
+                          <th> Total Amount</th>
+                          <th> Purchase Details</th>
+                          
+                          {% if request.session.sid %}
+                          <th> Add Items </th>
+                          {% endif %}
+
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in result %}
+                        <tr>
+
+                            <td>{{i.vendor_id}}</td>
+                            <td>{{i.pur_date}}</td>
+                            <td>{{i.pur_tot_amt}}</td>
+                            <td><a href="view_pur_details/{{i.id}}" class="btn btn-gradient-primary me-2">View</a></td>
+                            {% if request.session.sid %}
+							              <td><a href="purchase_add/{{i.id}}" class="btn btn-gradient-primary me-2">Add</a></td>
+                            {% endif %}
+
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              </div>
+          
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+        
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'admin/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  {% endblock %}
+  </body>
+</html>

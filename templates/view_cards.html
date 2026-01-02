@@ -1,0 +1,86 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
+<style>
+    .custom-table {
+    width: 100%; /* Set table width to 100% */
+    background-color: #f2f2f2; /* Set background color */
+}
+
+.custom-table th, .custom-table td {
+    padding: 8px; /* Add padding to table cells */
+}
+
+.custom-table th {
+    background-color: #F65005; /* Header background color */
+    color: white; /* Header text color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.custom-table tbody tr:hover {
+    background-color: #ddd; /* Hover row background color */
+}
+</style>
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">My Cards</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Register</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">My Cards</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+            <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="add_cards">Add New Card</a>
+
+                <table class="table table-bordered custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Card Holder Name</th>
+                            <th scope="col">Card Number </th>
+                            <th scope="col">Expire Date</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in result %}
+                        
+                        <tr>
+                            <td>{{ i.card_holder }}</td>
+                            <td>{{ i.card_no }}</td>
+                            <td>{{ i.exp_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}

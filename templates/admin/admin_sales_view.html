@@ -1,0 +1,120 @@
+{% load static %}
+{% block content %}
+{% include 'admin/menu.html' %}
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+    </script>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+              <div class="col-lg-10 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body" id="makepdf">
+                  <button class="btn btn-primary" id="button">Generate PDF</button>
+                  <button class="btn btn-primary" onclick="ExportToExcel('xlsx')">Export  to excel</button>
+                    <h4 class="card-title">Sales Details </h4><br>
+                    <!--<p class="card-description"> Add class <code>.table-bordered</code>
+                    </p>-->
+                  
+                    <table class="table table-bordered" id="tbl_exporttable_to_xls">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>District</th>
+                                <th>Street</th>
+                                <th>Phone</th>
+                                <th>Number of items</th>
+                                <th>Amount Paid</th>
+                                <th>Purchase Date</th>
+                                <th>Status</th>
+                                <th>Delivery Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for group in result %}
+                            {% for payment_detail in group.details %}
+                            <tr>
+                                {% if forloop.first %}
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.fname }} {{ payment_detail.user_details.lname }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.district }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.street }}</td>
+                                <td rowspan="{{ group.details|length }}">{{ payment_detail.user_details.phone }}</td>
+                                {% endif %}
+                                <td>{{ payment_detail.number_of_items }}</td>
+                                <td>{{ payment_detail.amount_paid }}</td>
+                                <td>{{ payment_detail.pay_date }}</td>
+                                <td>{{ payment_detail.pay_status }}</td>
+                                {% if payment_detail.pay_status == 'Assigned' %}
+                                <td><a href="delivery_detail_admin/{{group.cart_master_id}}" class="btn btn-gradient-primary me-2">Delivery Details</a></td>
+                                {% else %}
+                                <td> Not Assigned </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              </div>
+          
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+        
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script>
+
+      function ExportToExcel(type, fn, dl) {
+          var elt = document.getElementById('tbl_exporttable_to_xls');
+          var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+          return dl ?
+              XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+              XLSX.writeFile(wb, fn || ('Table.' + (type || 'xlsx')));
+      }
+      
+      
+      </script>
+
+    <script>
+      let button = document.getElementById("button");
+      let makepdf = document.getElementById("makepdf");
+   
+      button.addEventListener("click", function () {
+          let mywindow = window.open("", "PRINT", 
+                  "height=400,width=600");
+   
+          mywindow.document.write(makepdf.innerHTML);
+   
+          mywindow.document.close();
+          mywindow.focus();
+   
+          mywindow.print();
+          mywindow.close();
+   
+          return true;
+      });
+  </script>
+    <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'admin/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  {% endblock %}
+  </body>
+</html>

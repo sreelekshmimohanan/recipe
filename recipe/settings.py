@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wa_nec#i4y0z+&3ag2%4=!#)whjshhehlf#ba!8l-f6$(&!2k*'
+SECRET_KEY = 'django-insecure-*2dh1f7!de1@l%$$v!rnfp7@zed!dn6)m9w#v0@if)m^j7e376'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,13 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipe',
-
-
-
-
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -63,7 +56,7 @@ ROOT_URLCONF = 'recipe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME':'db_recipe',
+        'NAME':'recipe_db',
         'HOST':'localhost',
         'USER':'root',
         'PASSWORD':'',

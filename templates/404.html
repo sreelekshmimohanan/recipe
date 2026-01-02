@@ -1,0 +1,66 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
+<style>
+    .custom-table {
+    width: 100%; /* Set table width to 100% */
+    background-color: #f2f2f2; /* Set background color */
+}
+
+.custom-table th, .custom-table td {
+    padding: 8px; /* Add padding to table cells */
+}
+
+.custom-table th {
+    background-color: #F65005; /* Header background color */
+    color: white; /* Header text color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.custom-table tbody tr:hover {
+    background-color: #ddd; /* Hover row background color */
+}
+</style>
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">My Products</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Register</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">My Products</h1>
+        </div>
+        <div class="col-lg-6">
+            <i class="bi bi-exclamation-triangle display-1 text-secondary"></i>
+            <h1 class="mb-4"> No Purchase Found</h1>
+            <p class="mb-4">We’re sorry</p>
+            <a class="btn border-secondary rounded-pill py-3 px-5" href="view_products">Go Back To Shopping</a>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}

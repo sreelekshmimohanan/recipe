@@ -70,16 +70,9 @@
                     <a href="http://127.0.0.1:8000/index" class="nav-item nav-link active">Home</a>
                     {% if request.session.cuid %}
                     <a href="http://127.0.0.1:8000/cus_profile" class="nav-item nav-link">Profile</a>
-
-                    <a href="http://127.0.0.1:8000/logout" class="nav-item nav-link">Logout</a>
-                </div>
-{% elif request.session.admin %}
-
- <div class="navbar-nav ms-auto p-4 p-lg-0">
-                  
-                    
-                    <a href="http://127.0.0.1:8000/view_user_pro" class="nav-item nav-link">Viewuser</a>
-
+                    <a href="http://127.0.0.1:8000/view_recipes" class="nav-item nav-link">Recipes</a>
+                    <a href="http://127.0.0.1:8000/view_products" class="nav-item nav-link">Homely Products</a>
+                    <a href="http://127.0.0.1:8000/my_purchases" class="nav-item nav-link">My Purchses</a>
                     <a href="http://127.0.0.1:8000/logout" class="nav-item nav-link">Logout</a>
                 </div>
 

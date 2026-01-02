@@ -1,0 +1,82 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Add Your Products</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Products</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Customer Products</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            
+            <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <form action="addeditpro/{{result.id}}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                      
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" value="{{result.item_name}}" name="prod_name" id="name" placeholder="Product Name">
+                                <label for="name"> Product Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" value="{{result.item_stock}}" name="prod_qnty" id="name" placeholder="Product Quantity">
+                                <label for="name"> Product Quantity</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" value="{{result.item_price}}" name="prod_price" id="name" placeholder="Product Price">
+                                <label for="name"> Product Price</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" value="{{result.item_desc}}" name="prod_desc" id="name" placeholder="Product Description">
+                                <input type="hidden" class="form-control" value="{{result.item_image}}" name="item_image" id="name" placeholder="Product Description">
+                                <input type="hidden" class="form-control" value="{{result.cat_id}}" name="cat_id" id="name" placeholder="Product Description">
+                                <label for="name"> Description</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" value="{{result.item_status}}" name="item_status" id="name" placeholder="Product Price">
+                                <label for="name">Product Status</label>
+                            </div>
+                        </div>
+                        
+                       
+                        
+                        <div class="col-12">
+                            <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}
