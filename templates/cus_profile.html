@@ -1,0 +1,36 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+
+
+ <!-- Feature Start -->
+ <div class="container-fluid bg-light bg-icon my-5 py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Profile</h1>
+        </div>
+        <div class="row g-4">
+          <center>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-white text-center h-100 p-4 p-xl-5">
+                    <h4 class="mb-3">{{result.fname}} {{result.lname}}</h4>
+                    <p class="card-text"><strong>Gender:</strong> {{ result.gender }}</p>
+                    <p class="card-text"><strong>Address: </strong>{{ result.street }}, {{ result.district }}</p>
+                    <p class="card-text"><strong>Date of Birth: </strong>{{ result.dob }}</p>
+                    <p class="card-text"><strong>Phone: </strong>{{ result.phone }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ result.email }}</p>
+                    
+                  
+                </div>
+            </div>
+        </center>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}

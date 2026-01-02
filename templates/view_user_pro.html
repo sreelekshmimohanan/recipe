@@ -1,0 +1,85 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
+<style>
+    .custom-table {
+    width: 100%; /* Set table width to 100% */
+    background-color: #f2f2f2; /* Set background color */
+}
+
+.custom-table th, .custom-table td {
+    padding: 8px; /* Add padding to table cells */
+}
+
+.custom-table th {
+    background-color: #F65005; /* Header background color */
+    color: white; /* Header text color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.custom-table tbody tr:hover {
+    background-color: #ddd; /* Hover row background color */
+}
+</style>
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">My Products</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Register</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">All Users</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="row">
+                    {% for i in data %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                          
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.fname}} {{i.lname}}</h5>
+                                <p class="card-text">
+                                    <strong>District:</strong> {{i.district}}<br>
+                                    <strong>Street:</strong> {{i.street}}<br>
+                                    <strong>Phone:</strong> {{i.phone}}<br>
+                                    <strong>Gender:</strong> {{i.gender}}<br>
+                                    <strong>DOB:</strong> {{i.dob}}<br>
+                                    <strong>Email:</strong> {{i.email}}<br>
+                                    <strong>Password:</strong> {{i.password}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+  
+{% include 'footer.html' %}
+
+{% endblock %}
